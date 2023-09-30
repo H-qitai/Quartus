@@ -1,0 +1,326 @@
+|qhua835_lab2
+ldr <= fsm:inst4.ldr
+clk => fsm:inst4.clk
+clk => 4bit_reg:inst.clk
+clk => 4bit_reg:inst1.clk
+clk => 4bit_reg:inst3.clk
+ldop <= fsm:inst4.ldop
+clr <= fsm:inst4.clr
+overflow <= v.DB_MAX_OUTPUT_PORT_TYPE
+op => add_sub:inst2.sub
+operand[0] => 4bit_reg:inst.D[0]
+operand[1] => 4bit_reg:inst.D[1]
+operand[2] => 4bit_reg:inst.D[2]
+operand[3] => 4bit_reg:inst.D[3]
+OpA[0] <= 4bit_reg:inst1.Q[0]
+OpA[1] <= 4bit_reg:inst1.Q[1]
+OpA[2] <= 4bit_reg:inst1.Q[2]
+OpA[3] <= 4bit_reg:inst1.Q[3]
+OpB[0] <= 4bit_reg:inst.Q[0]
+OpB[1] <= 4bit_reg:inst.Q[1]
+OpB[2] <= 4bit_reg:inst.Q[2]
+OpB[3] <= 4bit_reg:inst.Q[3]
+result[0] <= 4bit_reg:inst3.Q[0]
+result[1] <= 4bit_reg:inst3.Q[1]
+result[2] <= 4bit_reg:inst3.Q[2]
+result[3] <= 4bit_reg:inst3.Q[3]
+sum[0] <= add_sub:inst2.sum[0]
+sum[1] <= add_sub:inst2.sum[1]
+sum[2] <= add_sub:inst2.sum[2]
+sum[3] <= add_sub:inst2.sum[3]
+state[0] <= S[0].DB_MAX_OUTPUT_PORT_TYPE
+state[1] <= S[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|qhua835_lab2|fsm:inst4
+ldr <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+S1 <= inst16.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst16.CLK
+clk => inst17.CLK
+S0 <= inst17.DB_MAX_OUTPUT_PORT_TYPE
+clr <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+ldop <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|qhua835_lab2|add_sub:inst2
+overflow <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+sub => f_adder:inst5.carry_in
+sub => inst.IN1
+sub => inst1.IN1
+sub => inst2.IN1
+sub => inst3.IN1
+a[0] => f_adder:inst5.a
+a[1] => f_adder:inst6.a
+a[2] => f_adder:inst7.a
+a[3] => f_adder:inst8.a
+b[0] => inst.IN0
+b[1] => inst1.IN0
+b[2] => inst2.IN0
+b[3] => inst3.IN0
+sum[0] <= f_adder:inst5.sum
+sum[1] <= f_adder:inst6.sum
+sum[2] <= f_adder:inst7.sum
+sum[3] <= f_adder:inst8.sum
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst7
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst7|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst6
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst6|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst5
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst5|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst8
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|qhua835_lab2|add_sub:inst2|f_adder:inst8|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|qhua835_lab2|4bit_reg:inst
+Q[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+D[0] => 2to1_mux:inst16.D
+D[1] => 2to1_mux:inst14.D
+D[2] => 2to1_mux:inst12.D
+D[3] => 2to1_mux:inst.D
+clear => 2to1_mux:inst12.sel
+clear => inst9.IN0
+clear => 2to1_mux:inst14.sel
+clear => inst10.IN0
+clear => 2to1_mux:inst16.sel
+clear => inst11.IN0
+clear => 2to1_mux:inst.sel
+clear => inst7.IN0
+clk => inst3.CLK
+clk => inst4.CLK
+clk => inst5.CLK
+clk => inst2.CLK
+ld => inst9.IN1
+ld => inst10.IN1
+ld => inst11.IN1
+ld => inst7.IN1
+
+
+|qhua835_lab2|4bit_reg:inst|2to1_mux:inst12
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst|2to1_mux:inst14
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst|2to1_mux:inst16
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst|2to1_mux:inst
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst1
+Q[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+D[0] => 2to1_mux:inst16.D
+D[1] => 2to1_mux:inst14.D
+D[2] => 2to1_mux:inst12.D
+D[3] => 2to1_mux:inst.D
+clear => 2to1_mux:inst12.sel
+clear => inst9.IN0
+clear => 2to1_mux:inst14.sel
+clear => inst10.IN0
+clear => 2to1_mux:inst16.sel
+clear => inst11.IN0
+clear => 2to1_mux:inst.sel
+clear => inst7.IN0
+clk => inst3.CLK
+clk => inst4.CLK
+clk => inst5.CLK
+clk => inst2.CLK
+ld => inst9.IN1
+ld => inst10.IN1
+ld => inst11.IN1
+ld => inst7.IN1
+
+
+|qhua835_lab2|4bit_reg:inst1|2to1_mux:inst12
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst1|2to1_mux:inst14
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst1|2to1_mux:inst16
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst1|2to1_mux:inst
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst3
+Q[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+D[0] => 2to1_mux:inst16.D
+D[1] => 2to1_mux:inst14.D
+D[2] => 2to1_mux:inst12.D
+D[3] => 2to1_mux:inst.D
+clear => 2to1_mux:inst12.sel
+clear => inst9.IN0
+clear => 2to1_mux:inst14.sel
+clear => inst10.IN0
+clear => 2to1_mux:inst16.sel
+clear => inst11.IN0
+clear => 2to1_mux:inst.sel
+clear => inst7.IN0
+clk => inst3.CLK
+clk => inst4.CLK
+clk => inst5.CLK
+clk => inst2.CLK
+ld => inst9.IN1
+ld => inst10.IN1
+ld => inst11.IN1
+ld => inst7.IN1
+
+
+|qhua835_lab2|4bit_reg:inst3|2to1_mux:inst12
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst3|2to1_mux:inst14
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst3|2to1_mux:inst16
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+
+|qhua835_lab2|4bit_reg:inst3|2to1_mux:inst
+out <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+sel => inst1.IN0
+sel => inst2.IN0
+0 => inst1.IN1
+D => inst.IN0
+
+

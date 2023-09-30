@@ -1,0 +1,205 @@
+|arithmetic_circuit
+overflow <= add_sub:inst.overflow
+sub => add_sub:inst.sub
+a[0] => add_sub:inst.a[0]
+a[1] => add_sub:inst.a[1]
+a[2] => add_sub:inst.a[2]
+a[3] => add_sub:inst.a[3]
+b[0] => add_sub:inst.b[0]
+b[1] => add_sub:inst.b[1]
+b[2] => add_sub:inst.b[2]
+b[3] => add_sub:inst.b[3]
+sever_seg[0] <= binary2sevenseg:inst2.ss_out[0]
+sever_seg[1] <= binary2sevenseg:inst2.ss_out[1]
+sever_seg[2] <= binary2sevenseg:inst2.ss_out[2]
+sever_seg[3] <= binary2sevenseg:inst2.ss_out[3]
+sever_seg[4] <= binary2sevenseg:inst2.ss_out[4]
+sever_seg[5] <= binary2sevenseg:inst2.ss_out[5]
+sever_seg[6] <= binary2sevenseg:inst2.ss_out[6]
+sever_seg[7] <= binary2sevenseg:inst2.ss_out[7]
+sum[0] <= add_sub:inst.sum[0]
+sum[1] <= add_sub:inst.sum[1]
+sum[2] <= add_sub:inst.sum[2]
+sum[3] <= add_sub:inst.sum[3]
+
+
+|arithmetic_circuit|add_sub:inst
+overflow <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+sub => f_adder:inst5.carry_in
+sub => inst.IN1
+sub => inst1.IN1
+sub => inst2.IN1
+sub => inst3.IN1
+a[0] => f_adder:inst5.a
+a[1] => f_adder:inst6.a
+a[2] => f_adder:inst7.a
+a[3] => f_adder:inst8.a
+b[0] => inst.IN0
+b[1] => inst1.IN0
+b[2] => inst2.IN0
+b[3] => inst3.IN0
+sum[0] <= f_adder:inst5.sum
+sum[1] <= f_adder:inst6.sum
+sum[2] <= f_adder:inst7.sum
+sum[3] <= f_adder:inst8.sum
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst7
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst7|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst6
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst6|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst5
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst5|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst8
+sum <= XOR3:inst.OUT
+b => XOR3:inst.IN3
+b => inst2.IN1
+b => inst3.IN0
+carry_in => XOR3:inst.IN1
+carry_in => inst3.IN1
+carry_in => inst1.IN0
+a => XOR3:inst.IN2
+a => inst2.IN0
+a => inst1.IN1
+carry_out <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|arithmetic_circuit|add_sub:inst|f_adder:inst8|XOR3:inst
+OUT <= 1.DB_MAX_OUTPUT_PORT_TYPE
+IN1 => 1.IN0
+IN2 => 3.IN0
+IN3 => 3.IN1
+
+
+|arithmetic_circuit|binary2sevenseg:inst2
+digit[0] => Equal0.IN3
+digit[0] => Equal1.IN0
+digit[0] => Equal2.IN3
+digit[0] => Equal3.IN1
+digit[0] => Equal4.IN3
+digit[0] => Equal5.IN1
+digit[0] => Equal6.IN3
+digit[0] => Equal7.IN2
+digit[0] => Equal8.IN3
+digit[0] => Equal9.IN1
+digit[0] => Equal10.IN3
+digit[0] => Equal11.IN2
+digit[0] => Equal12.IN3
+digit[0] => Equal13.IN2
+digit[0] => Equal14.IN3
+digit[0] => Equal15.IN3
+digit[1] => Equal0.IN2
+digit[1] => Equal1.IN3
+digit[1] => Equal2.IN0
+digit[1] => Equal3.IN0
+digit[1] => Equal4.IN2
+digit[1] => Equal5.IN3
+digit[1] => Equal6.IN1
+digit[1] => Equal7.IN1
+digit[1] => Equal8.IN2
+digit[1] => Equal9.IN3
+digit[1] => Equal10.IN1
+digit[1] => Equal11.IN1
+digit[1] => Equal12.IN2
+digit[1] => Equal13.IN3
+digit[1] => Equal14.IN2
+digit[1] => Equal15.IN2
+digit[2] => Equal0.IN1
+digit[2] => Equal1.IN2
+digit[2] => Equal2.IN2
+digit[2] => Equal3.IN3
+digit[2] => Equal4.IN0
+digit[2] => Equal5.IN0
+digit[2] => Equal6.IN0
+digit[2] => Equal7.IN0
+digit[2] => Equal8.IN1
+digit[2] => Equal9.IN2
+digit[2] => Equal10.IN2
+digit[2] => Equal11.IN3
+digit[2] => Equal12.IN1
+digit[2] => Equal13.IN1
+digit[2] => Equal14.IN1
+digit[2] => Equal15.IN1
+digit[3] => Equal0.IN0
+digit[3] => Equal1.IN1
+digit[3] => Equal2.IN1
+digit[3] => Equal3.IN2
+digit[3] => Equal4.IN1
+digit[3] => Equal5.IN2
+digit[3] => Equal6.IN2
+digit[3] => Equal7.IN3
+digit[3] => Equal8.IN0
+digit[3] => Equal9.IN0
+digit[3] => Equal10.IN0
+digit[3] => Equal11.IN0
+digit[3] => Equal12.IN0
+digit[3] => Equal13.IN0
+digit[3] => Equal14.IN0
+digit[3] => Equal15.IN0
+ss_out[0] <= ss~108.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[1] <= ss~107.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[2] <= ss~106.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[3] <= ss~105.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[4] <= ss~104.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[5] <= ss~103.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[6] <= ss~102.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[7] <= ss~101.DB_MAX_OUTPUT_PORT_TYPE
+
+
